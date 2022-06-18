@@ -1,5 +1,42 @@
 const {Router} = require('express');
 const router = Router();
+const nodemailer = require('nodemailer');
+
+router.post('/send-email',(req,res)=>{
+    const {email,mensaje} = req.body;
+
+    contentHTML = `
+        <h1>Mensaje de Contacto</h1>
+        <ul>
+            <li>Correo: ${email}</li>
+        </ul>
+        <p>${mensaje}</p>
+    `;
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, 
+        auth: {
+          user: 'bioph60@gmail.com', // generated ethereal user
+          pass: 'ndcudewzopqtrasl', // generated ethereal password
+        },
+        tls:{
+            rejectUnauthorized: false
+        }
+      });
+
+      const info = await transporter.sendMail({
+        from: "'Heart Labs' <bioph60@gmail.com>",
+        to: 'bedphdz@gmail.com',
+        subject:'Contacto Heart Labs',
+        html: contentHTML
+      });
+
+      console.log('Message sent');
+
+    res.send('recived');
+});
 
 router.get('/:id/:nombre/:precio/:fecha/:name/:lastname',(req,res)=>{
     const data ={
