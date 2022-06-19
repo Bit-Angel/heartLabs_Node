@@ -18,7 +18,7 @@ router.post('/send-email',(req,res)=>{
         port: 465,
         secure: true, 
         auth: {
-          user: 'bioph60@gmail.com', // generated ethereal user
+          user: 'brayanvazq1608@gmail.com', // generated ethereal user
           pass: 'ndcudewzopqtrasl', // generated ethereal password
         },
         tls:{
@@ -26,9 +26,9 @@ router.post('/send-email',(req,res)=>{
         }
       });
 
-      const info = await transporter.sendMail({
-        from: "'Heart Labs' <bioph60@gmail.com>",
-        to: 'bedphdz@gmail.com',
+      const info =  transporter.sendMail({
+        from: "'Heart Labs' <brayanvazq1608@gmail.com>",
+        to: 'brayanvazq1608@gmail.com',
         subject:'Contacto Heart Labs',
         html: contentHTML
       });
